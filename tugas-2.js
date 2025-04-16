@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const URL_TARGET = "https://jsonplaceholder.typicode.com/users";
+
 function fetchDataFromAxios() {
 	return axios({
 		method: "get",
-		url: "https://jsonplaceholder.typicode.com/users",
+		url: URL_TARGET,
 		responseType: "json",
 	})
 		.then((response) => response.data)
@@ -11,16 +13,15 @@ function fetchDataFromAxios() {
 }
 
 function fetchData() {
-	const response = fetch("https://jsonplaceholder.typicode.com/users").then(
-		(response) => response.json().catch((error) => error),
+	const response = fetch(URL_TARGET).then((response) =>
+		response.json().catch((error) => error),
 	);
 
 	return response;
 }
 
+const fetchResult = await fetchData();
+const axiosResult = await fetchDataFromAxios();
 
-const fetchResult = await fetchData()
-const axiosResult = await fetchDataFromAxios()
-
-console.log(fetchResult)
-console.log(axiosResult)
+console.log(fetchResult);
+console.log(axiosResult);
